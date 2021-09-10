@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+{% block title %}User profile{% endblock %}
+{% load static %}
+
+{% block user_status_change %}
+    <li><a href="{% url 'logout' %}" class="button special">Sign out</a></li>
+{% endblock %}
+
+{% block content %}
+
+<section id="main" class="wrapper">
+    <div class="container">
+        <div id="content">
+            <div class="row">
+                <div class="6u 12u(3)">
+                    <div class="4u 8u(2) 12u$(3)">
+                        <form method="POST" class="post-form">
+                            {% csrf_token %}
+                            <div class="3u 6u$(2) 12u$(3)">
+                                <input type="text" name="name" id="name" value="" style="color: white" placeholder="Username" />
+                            </div>
+                            <p></p>
+                             <div class="6u 12u(3)">
+                                <div class="4u 8u(2) 12u$(3)">
+                                    <ul class="actions vertical">
+                                       <li>
+                                           <input type="submit" value="Remove friend" href="{% url 'friends_remove' %}" class="button alt fit">
+                                       </li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <hr class="container">
+            <div>
+                <ul style="color: white">
+                    {% if friends %}
+                        {% for friend in friends %}
+
+                            <li> {{ friend }} </li>
+                        {% endfor %}
+                    {% else %}
+                        <b>
+                            You have no friends
+                        </b>
+                    {%endif%}
+                </ul>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% endblock %}

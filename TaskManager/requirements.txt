@@ -1,0 +1,4 @@
+django
+django-grappelli
+psycopg2
+django-enumfields
